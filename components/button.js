@@ -8,7 +8,11 @@ export default function ButtonPrimary(props) {
 
 const [pressedColor, setPressColor] = useState(props.color);
 
+
 function action(){
+
+    props.add()
+    
     if(props.isPlane)
     {
         setPressColor('red')

@@ -10,16 +10,24 @@ export default function Game() {
 
     useEffect( () => {
        console.log('refresh')
+       setStrikes(0)
       },[rerender])  
 
   const [rerender, setRerender] = useState(false);
+  const [strikes, setStrikes] = useState(0)
   let buttonsListArrRow = []
   let buttonsListArrColumn = [];
+
+  
+  const planePositionRow = Math.floor(Math.random() * 5);
+  console.log("🚀 ~ file: App.js ~ line 12 ~ App ~ planePositionRow", planePositionRow)
+  const planePositionCollumn = Math.floor(Math.random() * 5);
+  console.log("🚀 ~ file: App.js ~ line 14 ~ App ~ planePositionCollumn", planePositionCollumn)
 
    displayAlert = () => {
     Alert.alert(
         "Game over",
-        "Do you want to play again?",
+        "Do you want to play again? You have " + strikes + " strikes",
         [
           {
             text: "Yes",
@@ -34,10 +42,9 @@ export default function Game() {
       );
   }
 
-  const planePositionRow = Math.floor(Math.random() * 5);
-  console.log("🚀 ~ file: App.js ~ line 12 ~ App ~ planePositionRow", planePositionRow)
-  const planePositionCollumn = Math.floor(Math.random() * 5);
-  console.log("🚀 ~ file: App.js ~ line 14 ~ App ~ planePositionCollumn", planePositionCollumn)
+  const add = () => {
+    setStrikes(strikes+1)
+  }
 
   for (var i = 0; i < initialArr.length; i++) {
     var row = initialArr[i];
@@ -51,6 +58,7 @@ export default function Game() {
           color={element.color}
           isPlane={element.isPlane}
           alert={displayAlert}
+          add={add}
         >
         </ButtonPrimary>
       )

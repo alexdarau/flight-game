@@ -10,10 +10,13 @@ const [pressedColor, setPressColor] = useState(props.color);
 
 function action(){
     if(props.isPlane)
+    {
         setPressColor('red')
+        props.alert()
+    }
+
     else
         setPressColor('green')
-    console.log(props.id)
 }
 
 return (
